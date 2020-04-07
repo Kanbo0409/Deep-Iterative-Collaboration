@@ -1,0 +1,52 @@
+{
+    "name": "Helen",
+    "_comment": "68 face landmarks, connect HG over steps by feature average between each stacks",
+    "mode": "sr_align",
+    "degradation": "BI",
+    "gpu_ids": [0],
+    "use_tb_logger": false,
+    "scale": 8,
+    "is_train": false,
+    "use_chop": false,
+    "rgb_range": 1,
+    "self_ensemble": false,
+    "save_image": true,
+    "datasets": {
+        "test_Helen_FSR": {
+            "mode": "LRHR",
+            "name": "HelenFSRTest",
+            "dataroot_HR": "/home/jzy/datasets/SR_datasets/face_test/Helen_FSR/HR",
+            "dataroot_LR": "/home/jzy/datasets/SR_datasets/face_test/Helen_FSR/LR",
+            "LR_size": 16,
+            "HR_size": 128,
+            "data_type": "img"
+        },
+        "test_Helen": {
+            "mode": "LRHR",
+            "name": "Helen",
+            "dataroot_HR": "/home/jzy/datasets/SR_datasets/face_test/Helen/HR",
+            "dataroot_LR": "/home/jzy/datasets/SR_datasets/face_test/Helen/LR",
+            "data_type": "img",
+            "LR_size": 16,
+            "HR_size": 128
+        }
+    },
+    "networks": {
+        "which_model": "SRFBN_HG_V5",
+        "num_features": 48,
+        "in_channels": 3,
+        "out_channels": 3,
+        "num_steps": 4,
+        "num_groups": 6,
+        "detach_attention": false,
+        "hg_num_feature": 256,
+        "hg_num_keypoints": 68,
+        "num_fusion_block": 7
+    },
+    "solver": {
+        "pretrained_path": "../experiments/SRFBN_HG_V5_in3f48_x8_Helen_DIY_aug_Attention_FBHG_with_distort/epochs/step_0170000_ckp.pth"
+    },
+    "path": {
+      "root": "/home/jzy/projects/Feedback-Attention-FaceSR"
+    }
+}
